@@ -1,32 +1,37 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<conio.h>
 #include<string.h>
-void string_match(char *text, char *pattern){
-    int len1,len2,i,j,count=0;
-    len1 = strlen(text);
-    len2 = strlen(pattern);
-    if(len2>len1){
-        printf("Pattern cannot be longer than the original text.");
-        return;
-    }
-    for(i=0;i<len1-len2;i++){
-        for(j=0;j<len2;j++){
-            if(text[i+j]==pattern[j])
-                count++;
-
-        }
-        if(count==len2-1)
-            printf("position:%d\t",i+1);
-            count=0;
-    }
-}
-int main(){
-    char str1[50],str2[50];
-    printf("\t\tNaive String Matching\n");
-    printf("Enter the original text:");
-    fgets(str1,50,stdin);
-    printf("Enter the pattern to be matched:");
-    fgets(str2,50,stdin);
-    string_match(str1,str2);
+int match(char st[100], char pat[100]);
+int main(int argc, char **argv) {
+    char st[100], pat[100];
+    int status;
+    // clrscr();
+    printf("*** Naive String Matching Algorithm ***\n");
+    printf("Enter the String.\n");
+    gets(st);
+    printf("Enter the pattern to match.\n");
+    gets(pat);
+    status = match(st, pat);
+    if (status == -1)
+        printf("\nNo match found");
+    else
+        printf("Match has been found on %d position.", status);
+    // getch();
     return 0;
+}
+int match(char st[100], char pat[100]) {
+    int n, m, i, j, count = 0, temp = 0;
+    n = strlen(st);
+    m = strlen(pat);
+    for (i = 0; i <= n - m; i++) {
+        temp++;
+        for (j = 0; j < m; j++) {
+            if (st[i + j] == pat[j])
+            count++;
+        }
+        if (count == m)
+            return temp;
+            count = 0;
+    }
+return -1;
 }
